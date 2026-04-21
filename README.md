@@ -1,4 +1,4 @@
-# edpuzzle-answers-csp-fix
+# edpuzzle-answers-fix-Update-4/20/2026
 
 A Tampermonkey/Violentmonkey userscript that makes [ading2210/edpuzzle-answers](https://github.com/ading2210/edpuzzle-answers) work without requiring a separate CSP-disabling browser extension.
 
