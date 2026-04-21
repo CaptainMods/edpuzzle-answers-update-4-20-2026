@@ -4,20 +4,6 @@ A Tampermonkey/Violentmonkey userscript that makes [ading2210/edpuzzle-answers](
 
 ---
 
-## Why this exists
-
-Edpuzzle enforces a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) that blocks the browser from connecting to external mirror servers. The official bookmarklet now asks you to install a CSP-disabler extension just to use it.
-
-This userscript solves that at the root level:
-
-- It fetches `script.js` via `GM_xmlhttpRequest`, which runs in the privileged userscript context and is **not** subject to the page's CSP.
-- It then patches `window.fetch` and `window.XMLHttpRequest` in the page so that **every external request** (mirrors, asset files, etc.) is transparently rerouted through a GM bridge — again bypassing CSP — while all `edpuzzle.com` requests flow normally and carry your session cookies.
-- `mirrors.json` is intercepted to return `["https://edpuzzle.com"]`, so API calls go directly to the site you're already logged into — no dead proxy servers needed.
-
-The result: no CSP extension required, works with any future repo restructuring, zero hardcoded filenames.
-
----
-
 ## Installation
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) (Chrome/Edge/Brave/Opera) or [Violentmonkey](https://violentmonkey.github.io/) (Firefox/Chrome).
@@ -99,9 +85,3 @@ window.fetch + XMLHttpRequest patched in page context
 
 - [ading2210/edpuzzle-answers](https://github.com/ading2210/edpuzzle-answers) — the original script this wraps. All answer-fetching logic is theirs.
 - This repo only provides the CSP bypass layer.
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE)
